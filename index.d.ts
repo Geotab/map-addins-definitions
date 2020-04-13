@@ -9,7 +9,7 @@ declare namespace geotab {
     interface ILocalStorageService {
         set (key: string, value: string): Promise<boolean>;
         remove (key: string): Promise<boolean>;
-        get (key: string): Promise<string>;
+        get (key: string): Promise<string | undefined>;
     }
 
     /**
@@ -378,13 +378,51 @@ declare namespace geotab {
      * @prop font-weight Text element font weight
      */
     interface IFrameCanvasElementStyleAttributes {
-        fill: string;
-        stroke: string;
-        "stroke-width": number;
-        "fill-opacity": number;
-        "font-size": number;
-        "font-weight": number;
+        fill?: string;
+        stroke?: string;
+        "stroke-width"?: number;
+        "fill-opacity"?: number;
+        "font-size"?: number;
+        "font-weight"?: number;
     }
+
+    interface IFrameCanvasRectAttributes {
+        height?: number;
+        width?: number;
+        rx?: number;
+        ry?: number;
+        coords?: TPosition;
+    }
+
+    interface IFrameCanvasTextAttributes {
+        dx?: number;
+        dy?: number;
+        text?: string;
+        coords?: TPosition;
+    }
+
+    interface IFrameCanvasCircleAttributes {
+        r?: number;
+        coords?: TPosition;
+    }
+
+    interface IFrameCanvasPathAttributes {
+        path?: IPathSeg[];
+    }
+
+    interface IFrameCanvasMarkerAttributes {
+        height?: number;
+        width?: number;
+        x?: number;
+        y?: number;
+        dx?: number;
+        dy?: number;
+        coords?: TPosition;
+        href?: string;
+        buffer?: ArrayBuffer;
+    }
+
+    type IFrameCanvasElementAttributes = IFrameCanvasRectAttributes | IFrameCanvasTextAttributes | IFrameCanvasCircleAttributes | IFrameCanvasPathAttributes | IFrameCanvasMarkerAttributes;
 
     /**
      * New map element object
@@ -395,7 +433,7 @@ declare namespace geotab {
      * @method detach Detaches event handler from current element event
      */
     interface ICanvasElement {
-        change (attrs: IFrameCanvasElementStyleAttributes): ICanvasElement;
+        change (attrs: IFrameCanvasElementStyleAttributes & IFrameCanvasElementAttributes): ICanvasElement;
         remove (): void;
         isRemoved (): boolean;
         attach (event: TCanvasElementEvent, handler: (data: ICoordinate) => void): ICanvasElement;
@@ -406,6 +444,7 @@ declare namespace geotab {
         path (coordinates: IPathSeg[], zIndex: number): ICanvasElement;
         rect (coords: TPosition, width: number, height: number, radius: number, zIndex: number): ICanvasElement;
         circle (coords: TPosition, radius: number, zIndex: number): ICanvasElement;
+        marker (coords: TPosition, width: number, height: number, imgData: string | ArrayBuffer, zIndex: number): ICanvasElement;
         text (coords: TPosition, text: string, zIndex: number): ICanvasElement;
         clear (): void;
     }
