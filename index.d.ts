@@ -389,7 +389,8 @@ declare namespace geotab {
     interface IFrameCanvasRectAttributes extends IFrameCanvasElementStyleAttributes {
         height?: number;
         width?: number;
-        r?: number;
+        rx?: number;
+        ry?: number;
         coords?: TPosition;
     }
 
