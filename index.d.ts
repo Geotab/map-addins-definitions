@@ -386,31 +386,30 @@ declare namespace geotab {
         "font-weight"?: number;
     }
 
-    interface IFrameCanvasRectAttributes {
+    interface IFrameCanvasRectAttributes extends IFrameCanvasElementStyleAttributes {
         height?: number;
         width?: number;
-        rx?: number;
-        ry?: number;
+        r?: number;
         coords?: TPosition;
     }
 
-    interface IFrameCanvasTextAttributes {
+    interface IFrameCanvasTextAttributes extends IFrameCanvasElementStyleAttributes{
         dx?: number;
         dy?: number;
         text?: string;
         coords?: TPosition;
     }
 
-    interface IFrameCanvasCircleAttributes {
+    interface IFrameCanvasCircleAttributes extends IFrameCanvasElementStyleAttributes{
         r?: number;
         coords?: TPosition;
     }
 
-    interface IFrameCanvasPathAttributes {
+    interface IFrameCanvasPathAttributes extends IFrameCanvasElementStyleAttributes{
         path?: IPathSeg[];
     }
 
-    interface IFrameCanvasMarkerAttributes {
+    interface IFrameCanvasMarkerAttributes extends IFrameCanvasElementStyleAttributes{
         height?: number;
         width?: number;
         x?: number;
@@ -433,7 +432,7 @@ declare namespace geotab {
      * @method detach Detaches event handler from current element event
      */
     interface ICanvasElement {
-        change (attrs: IFrameCanvasElementStyleAttributes & IFrameCanvasElementAttributes): ICanvasElement;
+        change (attrs: IFrameCanvasElementAttributes): ICanvasElement;
         remove (): void;
         isRemoved (): boolean;
         attach (event: TCanvasElementEvent, handler: (data: ICoordinate) => void): ICanvasElement;
