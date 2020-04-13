@@ -360,7 +360,7 @@ declare namespace geotab {
      */
     interface IPathSeg {
         type: string;
-        points: TPathSegPoint[];
+        points?: TPathSegPoint[];
     }
 
     /**
