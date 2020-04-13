@@ -386,6 +386,14 @@ declare namespace geotab {
         "font-weight"?: number;
     }
 
+    /**
+     * Attribute of rect that can be changed for every custom element
+     * @prop height Height in pixels of the element
+     * @prop width Width in pixels of the element
+     * @prop rx Radius in pixels x-axios of the element
+     * @prop ry Radius in pixels y-axios of the element
+     * @prop coords Position of the element
+     */
     interface IFrameCanvasRectAttributes extends IFrameCanvasElementStyleAttributes {
         height?: number;
         width?: number;
@@ -394,6 +402,13 @@ declare namespace geotab {
         coords?: TPosition;
     }
 
+    /**
+     * Attribute of text that can be changed for every custom element
+     * @prop dx Offset in pixels x-axios of the element
+     * @prop dy Offset in pixels y-axios of the element
+     * @prop text Text of the element
+     * @prop coords Position of the element
+     */
     interface IFrameCanvasTextAttributes extends IFrameCanvasElementStyleAttributes{
         dx?: number;
         dy?: number;
@@ -401,15 +416,36 @@ declare namespace geotab {
         coords?: TPosition;
     }
 
+    /**
+     * Attribute of circle that can be changed for every custom element
+     * @prop r Radius in pixels of the element
+     * @prop coords Position of the element
+     */
     interface IFrameCanvasCircleAttributes extends IFrameCanvasElementStyleAttributes{
         r?: number;
         coords?: TPosition;
     }
 
+    /**
+     * Attribute of path that can be changed for every custom element
+     * @prop path Path of the element
+     */
     interface IFrameCanvasPathAttributes extends IFrameCanvasElementStyleAttributes{
         path?: IPathSeg[];
     }
 
+    /**
+     * Attribute of marker that can be changed for every custom element
+     * @prop height Height in pixels of the element
+     * @prop width Width in pixels of the element
+     * @prop x Position of the element
+     * @prop y Position of the element
+     * @prop dx Offset in pixels x-axios of the element
+     * @prop dy Offset in pixels y-axios of the element
+     * @prop coords Position of the element
+     * @prop href Image href of the element
+     * @prop buffer Image ArrayBuffer of the element
+     */
     interface IFrameCanvasMarkerAttributes extends IFrameCanvasElementStyleAttributes{
         height?: number;
         width?: number;
