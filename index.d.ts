@@ -39,12 +39,23 @@ declare namespace geotab {
         multiCall (calls: TApiCall[]): Promise<object[][]>;
         getSession (): Promise<ISessionInfo>;
     }
+    
+    export type TRelationOperator = "And" | "Or";
 
     /**
      * Group id object that is selected by user in company filter
      */
     interface IGroupFilterId {
         id: string;
+    }
+
+    interface IAdvancedGroupFilterId {
+        groupId: string;
+    }
+    
+    export interface IAdvancedFilterState {
+        relation: TRelationOperator;
+        groupListSearches: (IAdvancedGroupFilterId | IAdvancedFilterState)[];
     }
 
     /**
@@ -57,14 +68,16 @@ declare namespace geotab {
         go (page: string, state?: object): Promise<boolean>;
         hasAccessToPage (page: string): Promise<boolean>;
         getFilterState (): Promise<IGroupFilterId[]>;
+        getAdvancedFilterState (): Promise<IAdvancedFilterState>;
 
         // events handlers
         attach (event: "focus", handler: () => void): void;
         attach (event: "blur", handler: () => void): void;
         attach (event: "stateChange", handler: (state: object) => void): void;
         attach (event: "filterChange", handler: (groups: IGroupFilterId[]) => void): void;
+        attach (event: "advancedFilterChange", handler: (state: IAdvancedFilterState) => void): void;
 
-        detach (event: "focus" | "blur" | "stateChange" | "filterChange", handler?: Function): void;
+        detach (event: "focus" | "blur" | "stateChange" | "filterChange" | "advancedFilterChange", handler?: Function): void;
     }
 
     interface ICoordinate {
