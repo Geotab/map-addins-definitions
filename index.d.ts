@@ -64,7 +64,7 @@ declare namespace geotab {
     interface IPageService {
         active: boolean;
         set (key: string, value: string): Promise<boolean>;
-        get (key: string): Promise<object>;
+        get (key?: string): Promise<object>;
         go (page: string, state?: object): Promise<boolean>;
         hasAccessToPage (page: string): Promise<boolean>;
         getFilterState (): Promise<IGroupFilterId[]>;
